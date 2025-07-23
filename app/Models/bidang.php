@@ -12,4 +12,9 @@ class bidang extends Model
     protected $table = 'bidangs';
     protected $guarded = ['id'];
 
+    public function kepuasan()
+    {
+        return $this->hasMany(kepuasan::class);
+    }
+
 }

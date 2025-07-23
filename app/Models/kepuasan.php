@@ -11,4 +11,9 @@ class kepuasan extends Model
 
     protected $table = 'kepuasans';
     protected $guarded = ['id'];
+
+    public function bidang()
+    {
+        return $this->belongsTo(bidang::class);
+    }
 }
