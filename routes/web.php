@@ -5,6 +5,6 @@ use App\Models\bidang;
 
 Route::get('/', function () {
     return view('survei', [
-        'title' => 'Indeks Kepuasan Masyarakat wle'
+        'title' => 'Indeks Kepuasan Masyarakat '
     ]);
 });

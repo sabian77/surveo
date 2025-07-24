@@ -4,12 +4,9 @@
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center">
                         <div class="shrink-0">
-                            <img src="" alt="Your Company" class="size-8" />
+                            <img src="storage/image/logo.png" alt="Your Company" class="size-20" />
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Mobile menu placeholder -->
-            <!-- Tambahkan menu mobile di sini jika diperlukan -->
         </nav>
