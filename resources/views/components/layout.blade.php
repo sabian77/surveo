@@ -19,6 +19,8 @@
       <!-- Your content -->
           {{ $slot }}
     </div>
+
+          {{-- {{ $slot }} --}}
   </main>
 
 </div>
