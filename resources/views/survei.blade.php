@@ -1,5 +1,5 @@
 <x-layout :title="$title">
-    <section class="bg-white">
+    <section class="">
         <div class="flex justify-center items-center min-h-[70vh] px-4 ">
             <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
                 <h2 class="text-sm font-bold mb-4 text-center">Isi Survey</h2>
@@ -21,6 +21,7 @@
                             @endforeach
                         </select>
                     </div>
+                    
 
                     {{-- Rating --}}
                     <div class="mb-4">
@@ -74,7 +75,7 @@
     background-color: #f0fdf4;
     border-radius: 0.375rem;
     padding: 0.25rem;
-}
+    }
 
 </style>
 
@@ -95,7 +96,6 @@
             const value = item.getAttribute('data-value');
             kepuasanInput.value = nilaiKepuasan[value];
 
-            // Optional: beri visual feedback selected
             ratingItems.forEach(i => i.classList.remove('bg-green-100', 'rounded-xl'));
             item.classList.add('bg-green-100', 'rounded-xl');
         });
