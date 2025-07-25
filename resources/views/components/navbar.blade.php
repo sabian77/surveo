@@ -6,6 +6,12 @@
                 <div class="shrink-0">
                     <img src="{{ asset('images/logo.png') }}" alt="Polda Yogyakarta" class="size-20" />
                 </div>
+                <p id="today-date" class="text-white text-sm"></p>
+                <script>
+                document.getElementById('today-date').innerText = new Date().toLocaleDateString('id-ID', {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+                </script>
             </div>
         </div>
     </div>
