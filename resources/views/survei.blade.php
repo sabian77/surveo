@@ -52,11 +52,12 @@
                     {{-- masukan --}}
                     <div class="mb-4">
                         <label for="masukan" class="block mb-1 font-medium text-sm">Kritik dan saran</label>
-                        <textarea id="masukan" name="masukan" rows="3" class="w-full border rounded px-3 py-2 text-sm" placeholder="Ketik saran disini"></textarea>
+                        <textarea id="masukan" name="masukan" rows="3" class="w-full border rounded px-3 py-2 text-sm" placeholder="Ketik saran di sini"></textarea>
                     </div>
 
                     {{-- Tombol Submit --}}
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded">
+                    <button type="submit" class="w-full bg-blue-600
+                     hover:bg-blue-700 text-white font-medium py-2 rounded">
                         Kirim
                     </button>
                 </form>
