@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kepuasans', function (Blueprint $table) {
             $table->id();
             $table->enum('kepuasan', ['sangat puas', 'puas', 'mengecewakan', 'sangat mengecewakan']);
-            $table->text('masukan');
+            $table->text('masukan')->nullable();
             $table->foreignId('bidang_id')->constrained();
             $table->timestamps();
         });

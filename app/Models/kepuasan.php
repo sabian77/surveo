@@ -9,7 +9,6 @@ class kepuasan extends Model
 {
     use HasFactory;
 
-    protected $table = 'kepuasans';
     protected $guarded = ['id'];
 
     public function bidang()
