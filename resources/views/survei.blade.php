@@ -3,6 +3,13 @@
         <div class="flex justify-center items-center min-h-[70vh] px-4 ">
             <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
                 <h2 class="text-sm font-bold mb-4 text-center">Isi Survey</h2>
+
+                @if(session('error'))
+                    <div class="p-4 mb-4 text-red-800 bg-red-100 rounded">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
                             {{-- alert eror --}}
             @if ($errors->any())
             <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
