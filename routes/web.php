@@ -3,6 +3,7 @@
 use App\Models\bidang;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SurveiController;
+use App\Http\Middleware\CheckSurveyCompleted;
 
 Route::get('/', function () {
     return view('survei', [
@@ -12,9 +13,11 @@ Route::get('/', function () {
 
 Route::post('/', [SurveiController::class, 'store']);
 
-Route::get('/result', function () {
-    return view('result', [
-        'title' => 'Indeks Kepuasan Masyarakat ',
-    ]);
-});
+// Route::get('/result', function () {
+//     return view('result', [
+//         'title' => 'Indeks Kepuasan Masyarakat ',
+//     ]);
+// });
+
+Route::get('/result', [SurveiController::class, 'index'])->middleware(CheckSurveyCompleted::class);
 

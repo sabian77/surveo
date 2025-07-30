@@ -12,15 +12,15 @@ class SurveiController extends Controller
      */
     public function index()
     {
+        // Cek apakah user sudah mengisi survei
         if (!session('sudah_isi_survei')) {
-            return redirect('/')->with('error', 'Silakan isi survei terlebih dahulu.');
+            return redirect('/')->with('error', 'Anda harus mengisi survei terlebih dahulu.');
         }
-
         
-        session()->forget('sudah_isi_survei');
-
-        // Lanjut render view hasil
-        return view('result');
+        // Ambil data survei yang baru saja diisi (opsional)
+        $survei = Kepuasan::find(session('sudah_isi_survei'));
+        
+        return view('result', compact('survei'));
     }
     /**
      * Show the form for creating a new resource.
@@ -52,9 +52,11 @@ class SurveiController extends Controller
 
 
         // dd($validated);
-        kepuasan::create($validated);
+        $kepuasan = Kepuasan::create($validated);
+        
+        // Set session dengan ID data yang baru dibuat
+        session(['sudah_isi_survei' => $kepuasan->id]);
 
-        session(['sudah_isi_survei' => true]);
 
         return redirect('/result');
     }
