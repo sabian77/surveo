@@ -12,15 +12,12 @@ class SurveiController extends Controller
      */
     public function index()
     {
-        // Cek apakah user sudah mengisi survei
         if (!session('sudah_isi_survei')) {
             return redirect('/')->with('error', 'Anda harus mengisi survei terlebih dahulu.');
         }
-        
-        // Ambil data survei yang baru saja diisi (opsional)
-        $survei = Kepuasan::find(session('sudah_isi_survei'));
-        
-        return view('result', compact('survei'));
+    
+
+        return view('result');
     }
     /**
      * Show the form for creating a new resource.
@@ -35,7 +32,22 @@ class SurveiController extends Controller
      */
     public function store(Request $request)
     {
-    $validated = $request->validate([
+        // 1. Ambil IP address dan tanggal hari ini
+        $ipAddress = $request->ip();
+        $today = date('Y-m-d');
+        
+        // 2. Cek apakah IP ini sudah mengisi survei hari ini
+        $sudahIsi = Kepuasan::where('ip_address', $ipAddress)
+                        ->where('tanggal_isi', $today)
+                        ->exists();
+        
+        // 3. Jika sudah pernah isi, tolak
+        if ($sudahIsi) {
+            return redirect()->back()->with('error', 'Anda sudah mengisi survei hari ini. Silakan coba lagi besok.');
+        }
+        
+        // 4. Validasi form
+        $validated = $request->validate([
             'kepuasan' => 'required',
             'masukan' => 'nullable|min:5|max:255',
             'bidang_id' => 'required',
@@ -44,20 +56,18 @@ class SurveiController extends Controller
             'masukan.min' => 'Kritik dan saran minimal 5 karakter.',
             'masukan.max' => 'Kritik dan saran maksimal 255 karakter.',
             'bidang_id.required' => 'Silakan pilih bidang layanan.',
-        ], [
-            'kepuasan' => 'penilaian',
-            'masukan' => 'kritik dan saran',
-            'bidang_id' => 'bidang layanan',
         ]);
 
+        // 5. Tambahkan IP dan tanggal
+        $validated['ip_address'] = $ipAddress;
+        $validated['tanggal_isi'] = $today;
 
-        // dd($validated);
-        $kepuasan = Kepuasan::create($validated);
+        // 6. Simpan ke database
+        Kepuasan::create($validated);
         
-        // Set session dengan ID data yang baru dibuat
-        session(['sudah_isi_survei' => $kepuasan->id]);
-
-
+        // 7. Set session
+        session(['sudah_isi_survei' => true]);
+        
         return redirect('/result');
     }
 

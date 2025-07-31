@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->enum('kepuasan', ['sangat puas', 'puas', 'mengecewakan', 'sangat mengecewakan']);
             $table->text('masukan')->nullable();
+            $table->string('ip_address');
+            $table->date('tanggal_isi');
             $table->foreignId('bidang_id')->constrained();
             $table->timestamps();
         });

@@ -4,11 +4,17 @@
             <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
                 <h2 class="text-sm font-bold mb-4 text-center">Isi Survey</h2>
 
-                @if(session('error'))
-                    <div class="p-4 mb-4 text-red-800 bg-red-100 rounded">
-                        {{ session('error') }}
-                    </div>
-                @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
                             {{-- alert eror --}}
             @if ($errors->any())
@@ -18,7 +24,7 @@
             </svg>
             <span class="sr-only">Danger</span>
             <div>
-                <span class="font-medium">Ensure that these requirements are met:</span>
+                <span class="font-medium">Terjadi eror, pastikan sesuai peraturan:</span>
                 <ul class="mt-1.5 list-disc list-inside">
                     @foreach ($errors->all() as $error )
                         <li>{{ $error }}</li>

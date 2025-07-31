@@ -9,7 +9,13 @@ class kepuasan extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'kepuasan',
+        'masukan', 
+        'bidang_id',
+        'ip_address',    
+        'tanggal_isi'    
+    ];
 
     public function bidang()
     {
